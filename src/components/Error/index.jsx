@@ -1,33 +1,38 @@
-import { useContext } from 'react'
-import { ThemeContext } from '../../utils/context'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
+import ErrorIllustration from '../../assets/404.svg'
 
-const FooterContainer = styled.footer`
+const ErrorWrapper = styled.div`
+  margin: 30px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  background-color: ${colors.backgroundLight};
   align-items: center;
-  justify-content: center;
-  padding-top: 60px;
 `
 
-const NightModeButton = styled.button`
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
+const ErrorTitle = styled.h1`
+  font-weight: 300;
+`
+
+const ErrorSubtitle = styled.h2`
+  font-weight: 300;
   color: ${colors.secondary};
 `
 
-function Footer() {
-  const { toggleTheme, theme } = useContext(ThemeContext)
+const Illustration = styled.img`
+  max-width: 800px;
+`
 
+function Error() {
   return (
-    <FooterContainer>
-      <NightModeButton onClick={() => toggleTheme()}>
-        Changer de mode : {theme === 'light' ? '☀️' : '🌙'}
-      </NightModeButton>
-    </FooterContainer>
+    <ErrorWrapper>
+      <ErrorTitle>Oups...</ErrorTitle>
+      <Illustration src={ErrorIllustration} />
+      <ErrorSubtitle>
+        Il semblerait que la page que vous cherchez n’existe pas
+      </ErrorSubtitle>
+    </ErrorWrapper>
   )
 }
 
-export default Footer
+export default Error
