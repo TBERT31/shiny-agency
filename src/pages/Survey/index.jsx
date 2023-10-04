@@ -70,8 +70,8 @@ function Survey() {
 
   useEffect(() => {
     async function fetchSurvey(){
+      setDataLoading(true);
       try{
-        setDataLoading(true);
         const response = await fetch(`http://localhost:8000/survey`);
         const {surveyData} = await response.json();
         setSurveyData(surveyData);
