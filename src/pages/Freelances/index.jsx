@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import Card from '../../components/Card'
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
+import { Link } from 'react-router-dom'
+import { ThemeContext } from '../../utils/context'
 
 const CardsContainer = styled.div`
   display: grid;
@@ -36,6 +38,7 @@ function Freelances() {
   const [isDataLoading, setDataLoading] = useState(false)
   const [error, setError] = useState(false)
   const [freelancersList, setFreelancesList] = useState([])
+  const {theme} = useContext(ThemeContext)
 
   useEffect(() => {
     async function fetchFreelances() {
@@ -70,14 +73,16 @@ function Freelances() {
         </LoaderWrapper>
       ) : (
         <CardsContainer>
-          {freelancersList.map((profile, index) => (
-            <Card
-              key={`${profile.name}-${index}`}
-              label={profile.job}
-              title={profile.name}
-              picture={profile.picture}
-            />
-          ))}
+            {freelancersList?.map((profile) => (
+                <Link key={`freelance-${profile.id}`} to={`/profile/${profile.id}`}>
+                    <Card
+                        label={profile.job}
+                        title={profile.name}
+                        picture={profile.picture}
+                        theme={theme}
+                    />
+                </Link>
+            ))}
         </CardsContainer>
       )}
     </div>

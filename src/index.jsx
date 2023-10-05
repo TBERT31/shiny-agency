@@ -45,6 +45,7 @@ import Error from './components/Error'
 import GlobalStyle from './utils/style/GlobalStyle'
 import { ThemeProvider } from './utils/context'
 import { SurveyProvider } from './utils/context'
+import ProfileContainer from './components/ProfileContainer'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -58,6 +59,10 @@ ReactDOM.render(
             <Route path="/survey/:questionNumber" element={<Survey />} />
             <Route path="/results" element={<Results />} />
             <Route path="/freelances" element={<Freelances />} />
+            <Route 
+                path="/profile/:id" 
+                element={<ProfileContainer />} 
+            />
             <Route path="*" element={<Error />} />
           </Routes>
         </SurveyProvider>
